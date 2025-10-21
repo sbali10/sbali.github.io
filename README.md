@@ -40,3 +40,31 @@ If you want, I can also:
 
 - Add a `CNAME` file for a custom domain you control.
 - Set up a GitHub Actions workflow to build and deploy a static site generator (Hugo, Jekyll, Eleventy, etc.).
+
+## Added locally (dev) features
+
+- Favicon: `favicon.svg` (simple gradient with initials).
+- Accessibility: skip-link and focus styles for keyboard users.
+- Social icons: inline SVGs for GitHub and LinkedIn buttons.
+- Responsive tweaks: media query to improve small-screen layout.
+- Local dev script: `package.json` with `npm start` (uses `http-server`).
+
+To run locally after pulling:
+
+```powershell
+npm install
+npm start
+# then open http://localhost:8000
+```
+
+## Articles / Blog posts
+
+Simple approach (no SSG): add your posts as HTML files under the `posts/` folder. Example files were added:
+
+- `posts/index.html` — listing page of articles
+- `posts/2025-10-21-sample-article.html` — sample article
+
+Add new articles by creating a file like `posts/2025-11-01-my-article.html` and link to it from `posts/index.html` or rely on the listing page to be updated manually.
+
+If you'd prefer an SSG (Hugo/Eleventy/Jekyll) I can scaffold a simple workflow that builds into `/posts/` or `docs/` and add a GitHub Actions workflow to publish automatically.
+
