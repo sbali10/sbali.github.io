@@ -62,7 +62,7 @@
           <p>2025-10-22 — A short note describing how this repo was created and the posts workflow.</p>
         </div>
         <div class="article-item">
-          <a href="posts/2025-10-21-sample-article.html">Sample article</a>
+          <a href="posts/2025-10-21-sample-article.html" class="modal-link">Sample article</a>
           <p>2025-10-21 — A minimal sample post.</p>
         </div>
       </div>
@@ -73,6 +73,27 @@
       <button id="modal-close" aria-label="Close article" style="position:fixed;right:24px;top:24px;background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer">✕</button>
     </div>
     <script>
+      // Handle clicks on Back links: close modal if open, otherwise navigate to main page
+      document.addEventListener('click', function(e){
+        const back = e.target.closest && e.target.closest('a.back-link');
+        if(back){
+          e.preventDefault();
+          const modal = document.getElementById('modal');
+          // if modal is visible, close it
+          if(modal && modal.style.display === 'flex'){
+            document.getElementById('modal-close').click();
+            return;
+          }
+          // otherwise navigate to the main page (file:// safe)
+          if(location.protocol === 'file:'){
+            // when opened directly from file system, resolve to the index.html file in parent
+            window.location.href = new URL('../index.html', location.href).href;
+          } else {
+            window.location.href = new URL('/', location.href).href;
+          }
+        }
+      });
+
       // Open article in modal when links with .modal-link are clicked
       document.addEventListener('click', function(e){
         const a = e.target.closest && e.target.closest('a.modal-link');
